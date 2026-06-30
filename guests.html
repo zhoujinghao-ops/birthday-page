@@ -728,7 +728,7 @@ blockquote {
   </head>
   <body>
     <nav class="site-nav" aria-label="Birthday pages">
-      <a class="site-nav__brand" href="birthday.html">Birthday</a>
+      <a class="site-nav__brand" href="index.html">Birthday</a>
       <div>
         <a href="date.html">Date</a>
         <a href="place.html">Place</a>
@@ -755,7 +755,7 @@ blockquote {
           </div>
           <div class="guest-list__actions">
             <a class="button guest-rsvp-link" href="rsvp.html">Add your name</a>
-            <a class="button button--ghost" href="birthday.html">Back to birthday</a>
+            <a class="button button--ghost" href="index.html">Back to birthday</a>
           </div>
           <form class="guest-list__reset" aria-label="Reset guest list">
             <input id="reset-code" name="resetCode" autocomplete="off" inputmode="numeric" placeholder="Reset code" />
@@ -780,17 +780,10 @@ blockquote {
 
       const app = initializeApp(firebaseConfig);
       const db = getFirestore(app);
-      const cameFromPoints = new URLSearchParams(window.location.search).get('from') === 'points';
       const guestList = document.querySelector('.guest-list');
       const resetForm = document.querySelector('.guest-list__reset');
       const resetInput = document.querySelector('#reset-code');
       const resetMessage = document.querySelector('.guest-list__reset-message');
-
-      if (cameFromPoints) {
-        document.querySelectorAll('.guest-rsvp-link').forEach((link) => {
-          link.href = 'rsvp.html?from=points';
-        });
-      }
 
       function clean(text) {
         return String(text || '').replace(/[&<>"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[char]));
