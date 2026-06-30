@@ -775,6 +775,7 @@ blockquote {
           <a href="note.html">Note</a>
           <a class="guest-list-link" href="guests.html">Guest list</a>
           <a class="answer-page-link" href="rsvp.html">Are you coming</a>
+          <a href="index.html">Points</a>
         </div>
       </div>
     </nav>
@@ -788,8 +789,7 @@ blockquote {
           <span></span><span></span><span></span><span></span>
         </div>
         <div class="hero__content">
-          <p class="kicker">Birthday celebration</p>
-          <h1 id="page-title">25 July at Parc Oasis, Lounge Room</h1>
+          <h1 id="page-title">Welcome to Jinghao's 10th birthday party</h1>
           <p class="hero__copy">12pm-5pm with lunch provided: pizza, fruits, drinks, tarts, chicken wings, and much more.</p>
           <div class="hero__actions" aria-label="Birthday answer">
             <a class="button guest-list-link" href="guests.html">See guest list</a>
@@ -814,9 +814,19 @@ blockquote {
       </section>
 
     </main>
+    <a class="button button--paper back-to-points" href="index.html">Back to points</a>
     <script>
       const menuButton = document.querySelector('.dot-menu__button');
       const birthdayMenu = document.querySelector('#birthday-menu');
+      const cameFromPoints = new URLSearchParams(window.location.search).get('from') === 'points';
+      if (cameFromPoints) {
+        document.querySelectorAll('.guest-list-link').forEach((link) => {
+          link.href = 'guests.html?from=points';
+        });
+        document.querySelectorAll('.answer-page-link').forEach((link) => {
+          link.href = 'rsvp.html?from=points';
+        });
+      }
       menuButton.addEventListener('click', () => {
         const isOpen = !birthdayMenu.hasAttribute('hidden');
         birthdayMenu.toggleAttribute('hidden', isOpen);
